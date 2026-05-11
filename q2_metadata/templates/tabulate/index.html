@@ -23,6 +23,14 @@
     </div>
   </div>
   <link rel="stylesheet" type="text/css" href="./css/datatables.min.css"/>
+  <style>
+    table.table.dataTable.table-striped > tbody > tr:nth-of-type(2n+1) > * {
+      box-shadow: inset 0 0 0 9999px #F9F9F9;
+    }
+    table.table.dataTable.table-hover > tbody > tr:hover > * {
+      box-shadow: inset 0 0 0 9999px #E8F1F8;
+    }
+  </style>
   <script type="text/javascript" src="./js/datatables.min.js"></script>
 
   {% set loading_selector = '#loading' %}
@@ -69,15 +77,21 @@
           loading.remove();
           console.log('Successfully loaded table!');
         })
-        .on('error.dt', function(error, settings, techNote, message) {
-          // From 'js-error-handler.html'
-          handleErrors([error, settings, techNote, message], loading, helpMsg);
-        })
         .DataTable({
           data: data.data,
           fixedHeader: true,
+          orderMulti: true,
           pageLength: {{ page_size }},
-          dom: 'frtip',
+          layout: {
+            topStart: null,
+            topEnd: 'search',
+            bottomStart: 'info',
+            bottomEnd: 'paging'
+          },
+          columnControl: {
+            target: 1,
+            content: ['search']
+          },
         });
     });
   </script>
