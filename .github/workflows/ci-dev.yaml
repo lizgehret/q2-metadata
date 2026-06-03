@@ -7,7 +7,8 @@ on:
     branches: ["dev"]
 jobs:
   ci:
-    uses: qiime2/distributions/.github/workflows/lib-ci-dev.yaml@dev
+    uses: lizgehret/distributions/.github/workflows/lib-ci-dev.yaml@dev
     with:
       distro: tiny
       recipe-path: 'conda-recipe'
+      validate-pr-template: false
