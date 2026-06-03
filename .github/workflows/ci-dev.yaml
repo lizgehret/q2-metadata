@@ -2,9 +2,9 @@
 name: ci-dev
 on:
   pull_request:
-    branches: ["dev"]
+    branches: ["master"]
   push:
-    branches: ["dev"]
+    branches: ["master"]
 jobs:
   ci:
     uses: lizgehret/distributions/.github/workflows/lib-ci-dev.yaml@dev
